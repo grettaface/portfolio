@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Bret Kruse's Portfolio Site`,
+    description: `I am a developer and designer creating highly interactive compelling software for humans`,
+    author: `@grettaface`,
   },
   plugins: [
     {
@@ -36,7 +36,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon:
+          process.env.NODE_ENV === "production"
+            ? `src/images/favicon-production.png`
+            : `src/images/favicon-development.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
