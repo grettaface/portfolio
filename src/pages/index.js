@@ -1,6 +1,8 @@
-import PreviewImage from "../components/PreviewImage"
+import Grid from "../components/Grid/Grid"
+import PreviewImage from "../components/PreviewImage/PreviewImage"
 import React from "react"
 import SEO from "../components/seo"
+import Transition from "../components/Transition/Transition"
 import { graphql } from "gatsby"
 
 const IndexPage = ({ data }) => {
@@ -11,9 +13,12 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO title={title} description={description} />
-      {data.allContentfulProject.edges.map(p => (
-        <PreviewImage key={p.node.id} item={p.node} />
-      ))}
+      <Transition />
+      <Grid>
+        {data.allContentfulProject.edges.map(p => (
+          <PreviewImage key={p.node.id} item={p.node} />
+        ))}
+      </Grid>
     </>
   )
 }
@@ -34,6 +39,16 @@ export const pageQuery = graphql`
           client
           tags {
             tag
+          }
+          previewImage {
+            id
+            resolutions(quality: 100) {
+              base64
+              tracedSVG
+              aspectRatio
+              srcWebp
+              srcSetWebp
+            }
           }
         }
       }
