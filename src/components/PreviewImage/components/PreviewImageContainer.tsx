@@ -38,8 +38,8 @@ const PreviewImageContainer = styled.div`
   }
 
   @media screen and (min-width: 1200px) {
-    width: 25%vw;
-    height: 25%vw;
+    width: 25vw;
+    height: 25vw;
   }
 `
 export default PreviewImageContainer
