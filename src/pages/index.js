@@ -1,5 +1,6 @@
+import "../components/layout.css"
+
 import Grid from "../components/Grid/Grid"
-import Layout from "../components/layout"
 import PreviewImage from "../components/PreviewImage/PreviewImage"
 import React from "react"
 import SEO from "../components/seo"
@@ -12,7 +13,7 @@ const IndexPage = ({ data }) => {
     ogdescription: description,
   } = data.allContentfulMeta.edges[0].node
   return (
-    <Layout>
+    <>
       <SEO title={title} description={description} />
       <Transition />
       <Grid>
@@ -20,7 +21,7 @@ const IndexPage = ({ data }) => {
           <PreviewImage key={p.node.id} item={p.node} />
         ))}
       </Grid>
-    </Layout>
+    </>
   )
 }
 
