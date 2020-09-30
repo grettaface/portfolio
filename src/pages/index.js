@@ -4,7 +4,6 @@ import Grid from "../components/Grid/Grid"
 import PreviewImage from "../components/PreviewImage/PreviewImage"
 import React from "react"
 import SEO from "../components/seo"
-import Transition from "../components/Transition/Transition"
 import { graphql } from "gatsby"
 
 const IndexPage = ({ data }) => {
@@ -15,7 +14,6 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO title={title} description={description} />
-      <Transition />
       <Grid>
         {data.allContentfulProject.edges.map(p => (
           <PreviewImage key={p.node.id} item={p.node} />
@@ -55,7 +53,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulMeta(filter: { pageName: { eq: "Home" } }) {
+    allContentfulMeta(filter: { page_name: { eq: "Home" } }) {
       edges {
         node {
           page_title

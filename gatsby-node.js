@@ -1,7 +1,19 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
+exports.createPages = async function ({ actions, graphql }) {
+  const { data } = await graphql(`
+    query {
+      allContentfulProjectDetail {
+        nodes {
+          slug
+        }
+      }
+    }
+  `)
+  data.allContentfulProjectDetail.nodes.forEach(edge => {
+    const slug = edge.slug
+    actions.createPage({
+      path: slug,
+      component: require.resolve(`./src/pages/templates/project-detail.tsx`),
+      context: { slug: slug },
+    })
+  })
+}
