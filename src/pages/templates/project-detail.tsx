@@ -67,6 +67,9 @@ export const query = graphql`
             contentType
             url
           }
+          fluid {
+            srcWebp
+          }
         }
         id
       }
