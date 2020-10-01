@@ -19,9 +19,8 @@ export default function ProjectDetail({ data }) {
         />
         <a href={post.externalLink.linkUrl}>{post.externalLink.linkTitle}</a>
         <div>
-          {post.images.map(img => {
-            console.log({ img })
-            return <ProjectImage key={img.id} info={img} />
+          {post.work.map(work => {
+            return <ProjectImage key={work.id} info={work} />
           })}
         </div>
       </div>
@@ -45,30 +44,38 @@ export const query = graphql`
         }
         nodeType
       }
-      meta {
-        oglocale
-        ogtype
-        ogdescription
-        page_name
-        page_title
-      }
-      tags {
-        tag
-      }
       externalLink {
         linkTitle
         linkUrl
       }
-      images {
-        id
+      work {
+        description {
+          content {
+            content {
+              value
+              nodeType
+              marks {
+                type
+              }
+            }
+            nodeType
+          }
+          nodeType
+        }
         image {
           file {
+            contentType
             url
-            fileName
           }
-          title
-          description
         }
+        id
+      }
+      meta {
+        oglocale
+        ogtype
+        page_name
+        page_title
+        ogdescription
       }
     }
   }
