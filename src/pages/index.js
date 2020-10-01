@@ -10,14 +10,27 @@ const IndexPage = ({ data }) => {
   const {
     page_title: title,
     ogdescription: description,
+    ogimage: image,
   } = data.allContentfulMeta.edges[0].node
+
+  console.log({ data })
   return (
     <>
-      <SEO title={title} description={description} />
+      <SEO
+        title={title}
+        description={description}
+        image={image.fixed.srcWebp}
+      />
       <Grid>
-        {data.allContentfulProject.edges.map(p => (
-          <PreviewImage key={p.node.id} item={p.node} />
-        ))}
+        {data.allContentfulProject.nodes.map(p => {
+          return (
+            <PreviewImage
+              key={p.id}
+              slug={p.link?.slug}
+              previewImage={p.previewImage}
+            />
+          )
+        })}
       </Grid>
     </>
   )
@@ -28,28 +41,25 @@ export default IndexPage
 export const pageQuery = graphql`
   query HomePageQuery {
     allContentfulProject {
-      edges {
-        node {
+      nodes {
+        id
+        title
+        description {
+          description
+        }
+        projectType
+        client
+        tags {
+          tag
+        }
+        previewImage {
           id
-          title
-          description {
-            description
+          fluid {
+            srcWebp
           }
-          projectType
-          client
-          tags {
-            tag
-          }
-          previewImage {
-            id
-            resolutions(quality: 100) {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
-            }
-          }
+        }
+        link {
+          slug
         }
       }
     }
@@ -60,6 +70,11 @@ export const pageQuery = graphql`
           ogdescription
           ogtype
           oglocale
+          ogimage {
+            fixed {
+              srcWebp
+            }
+          }
         }
       }
     }

@@ -5,7 +5,7 @@ const PreviewFrontFace = ({ img }) => {
   console.log({ img })
   return (
     <PreviewFrontFaceContainer>
-      <img src={img.resolutions.srcWebp} />
+      <img src={img.fluid.srcWebp} />
     </PreviewFrontFaceContainer>
   )
 }

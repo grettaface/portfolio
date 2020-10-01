@@ -1,5 +1,7 @@
 import Layout from "../../components/layout"
 import ProjectImage from "../../components/ProjectDetail/ProjectImage"
+import ProjectTags from "../../components/ProjectDetail/ProjectTags"
+import ProjectTitle from "../../components/ProjectDetail/ProjectTitle"
 import React from "react"
 import SEO from "../../components/seo"
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
@@ -7,17 +9,25 @@ import { graphql } from "gatsby"
 
 export default function ProjectDetail({ data }) {
   const post = data.contentfulProjectDetail
+  console.log(post)
   return (
     <Layout>
-      <SEO title={post.meta.page_title} description={post.meta.ogdescription} />
+      <SEO
+        title={post.meta.page_title}
+        description={post.meta.ogdescription}
+        image={post.meta.ogimage.fixed.srcWebp}
+      />
       <div>
-        <h1>{post.title}</h1>
+        <ProjectTitle>{`${post.client} - ${post.title}`}</ProjectTitle>
+        <ProjectTags tags={post.tags} />
         <div
           dangerouslySetInnerHTML={{
             __html: documentToHtmlString(post.description),
           }}
         />
-        <a href={post.externalLink.linkUrl}>{post.externalLink.linkTitle}</a>
+        <a title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
+          {post.externalLink.linkTitle}
+        </a>
         <div>
           {post.work.map(work => {
             return <ProjectImage key={work.id} info={work} />
@@ -70,15 +80,26 @@ export const query = graphql`
           fluid {
             srcWebp
           }
+          title
         }
         id
       }
       meta {
+        ogimage {
+          fixed {
+            srcWebp
+          }
+        }
         oglocale
         ogtype
         page_name
         page_title
         ogdescription
+      }
+      client
+      tags {
+        id
+        tag
       }
     }
   }

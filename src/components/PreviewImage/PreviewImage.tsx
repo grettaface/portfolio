@@ -1,16 +1,17 @@
+import { Link } from "gatsby"
 import PreviewFrontFace from "./components/PreviewFrontFace"
 import PreviewImageContainer from "./components/PreviewImageContainer"
 import PreviewSideFace from "./components/PreviewSideFace"
 import React from "react"
 
-const PreviewImage = ({ item }) => {
-  const { client, title } = item
-  console.log({ item })
+const PreviewImage = ({ slug = "", previewImage }) => {
   return (
-    <PreviewImageContainer>
-      <PreviewFrontFace img={item.previewImage} />
-      <PreviewSideFace />
-    </PreviewImageContainer>
+    <Link to={slug}>
+      <PreviewImageContainer>
+        <PreviewFrontFace img={previewImage} />
+        <PreviewSideFace />
+      </PreviewImageContainer>
+    </Link>
   )
 }
 

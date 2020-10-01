@@ -1,7 +1,8 @@
 import styled from "styled-components"
 const PreviewSideFace = styled.div`
+  cursor: pointer;
   position: absolute;
-
+  background: linear-gradient(to top right, #6ad0b0, #6aa4d0);
   transform: rotateY(90deg) translateZ(50vw);
   width: 100vw;
   height: 100vw;
