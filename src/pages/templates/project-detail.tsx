@@ -1,5 +1,11 @@
 import Layout from "../../components/layout"
-import ProjectImage from "../../components/ProjectDetail/ProjectImage"
+import ProjectContentContainer from "../../components/ProjectDetail/ProjectContentContainer"
+import ProjectCopyright from "../../components/ProjectDetail/ProjectCopyright"
+import ProjectDescription from "../../components/ProjectDetail/ProjectDescription"
+import ProjectImage from "../../components/ProjectDetail/ProjectImage/ProjectImage"
+import ProjectImageContainer from "../../components/ProjectDetail/ProjectImageContainer"
+import ProjectLink from "../../components/ProjectDetail/ProjectLink"
+import ProjectPage from "../../components/ProjectDetail/ProjectPage"
 import ProjectTags from "../../components/ProjectDetail/ProjectTags"
 import ProjectTitle from "../../components/ProjectDetail/ProjectTitle"
 import React from "react"
@@ -9,7 +15,6 @@ import { graphql } from "gatsby"
 
 export default function ProjectDetail({ data }) {
   const post = data.contentfulProjectDetail
-  console.log(post)
   return (
     <Layout>
       <SEO
@@ -17,29 +22,45 @@ export default function ProjectDetail({ data }) {
         description={post.meta.ogdescription}
         image={post.meta.ogimage.fixed.srcWebp}
       />
-      <div>
-        <ProjectTitle>{`${post.client} - ${post.title}`}</ProjectTitle>
-        <ProjectTags tags={post.tags} />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(post.description),
-          }}
-        />
-        <a title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
-          {post.externalLink.linkTitle}
-        </a>
-        <div>
-          {post.work.map(work => {
-            return <ProjectImage key={work.id} info={work} />
-          })}
-        </div>
-      </div>
+      <ProjectPage>
+        {console.log({post})}
+        <ProjectTitle backgroundImage={post.headerBackgroundImage.file.url}><div>{`${post.client.name} - ${post.title}`}</div>
+          <ProjectTags tags={post.tags} />
+            
+        </ProjectTitle>
+        <ProjectContentContainer>
+          <ProjectDescription
+                dangerouslySetInnerHTML={{
+                  __html: documentToHtmlString(post.description),
+                }}
+              />
+          
+          {post.externalLink?.linkTitle && 
+            <ProjectLink title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
+              {post.externalLink.linkTitle}
+            </ProjectLink>
+          }
+          <ProjectImageContainer>
+            {post.work.map(work => {
+              return <ProjectImage key={work.id} info={work} />
+            })}
+          </ProjectImageContainer>
+          {post.externalLink?.linkTitle && 
+            <ProjectLink title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
+              {post.externalLink.linkTitle}
+            </ProjectLink>
+          }
+          <ProjectCopyright className="copyright">
+            Copyright {post.client.name}. I merely was a part of it's creation.
+          </ProjectCopyright>
+        </ProjectContentContainer>
+      </ProjectPage>
     </Layout>
   )
 }
 export const query = graphql`
-  query($slug: String) {
-    contentfulProjectDetail(slug: { eq: $slug }) {
+  query ($slug: String) {
+    contentfulProjectDetail(slug: {eq: $slug}) {
       title
       description {
         content {
@@ -84,6 +105,14 @@ export const query = graphql`
         }
         id
       }
+      client {
+        id
+        name
+      }
+      tags {
+        id
+        tag
+      }
       meta {
         ogimage {
           fixed {
@@ -96,11 +125,16 @@ export const query = graphql`
         page_title
         ogdescription
       }
-      client
-      tags {
-        id
-        tag
+      headerBackgroundImage {
+        file {
+          url
+          fileName
+          contentType
+        }
       }
     }
   }
+
+
+
 `

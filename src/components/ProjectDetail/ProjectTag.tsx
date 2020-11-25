@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const ProjectTag = styled.div`
-  color: red;
+  margin: 5px;
 `
 
 export default ProjectTag

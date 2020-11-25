@@ -11,8 +11,8 @@ const ProjectTags = ({ tags }: Props) => {
   console.log(tags)
   return (
     <ProjectTagsContainer>
-      {tags.map(t => (
-        <ProjectTag key={t.id}>{t.tag}</ProjectTag>
+      {tags.map((t,i) => (
+        <ProjectTag key={t.id}>{t.tag}{i<tags.length - 1 ? ',': ''} </ProjectTag>
       ))}
     </ProjectTagsContainer>
   )

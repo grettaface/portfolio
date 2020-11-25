@@ -10,6 +10,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-web-font-loader`,
+      options: {
+        google: {
+          families: [`Lato:100,400`]
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `7hwnh6mxkcg3`,
@@ -26,6 +34,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,

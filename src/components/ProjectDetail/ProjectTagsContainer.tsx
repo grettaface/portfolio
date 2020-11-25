@@ -1,8 +1,11 @@
 import styled from "styled-components"
 
 const ProjectTagsContainer = styled.div`
-  background: yellow;
   display: flex;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  justify-content: center;
 `
 
 export default ProjectTagsContainer
