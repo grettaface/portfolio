@@ -7,6 +7,7 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^14.1.1",
     "@contentful/rich-text-react-renderer": "^14.1.1",
+    "babel-plugin-styled-components": "^1.12.0",
     "contentful": "^7.14.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.61",
@@ -17,6 +18,7 @@
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.3.11",
     "gatsby-plugin-sharp": "^2.6.36",
+    "gatsby-plugin-styled-components": "^3.5.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-contentful": "^2.3.46",
     "gatsby-source-filesystem": "^2.3.30",
@@ -25,7 +27,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "prettier": "2.1.1"

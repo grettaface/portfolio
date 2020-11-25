@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProjectLink = styled.a`
+const ProjectLink = styled.a.attrs({target:'_blank'})`
   padding: 20px 50px;
   border: 1px solid #087eb4;
   color: #087eb4;

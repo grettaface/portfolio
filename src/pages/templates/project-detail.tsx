@@ -23,33 +23,39 @@ export default function ProjectDetail({ data }) {
         image={post.meta.ogimage.fixed.srcWebp}
       />
       <ProjectPage>
-        {console.log({post})}
-        <ProjectTitle backgroundImage={post.headerBackgroundImage.file.url}><div>{`${post.client.name} - ${post.title}`}</div>
+        {console.log({ post })}
+        <ProjectTitle backgroundImage={post.headerBackgroundImage.file.url}>
+          <div>{`${post.client.name} - ${post.title}`}</div>
           <ProjectTags tags={post.tags} />
-            
         </ProjectTitle>
         <ProjectContentContainer>
           <ProjectDescription
-                dangerouslySetInnerHTML={{
-                  __html: documentToHtmlString(post.description),
-                }}
-              />
-          
-          {post.externalLink?.linkTitle && 
-            <ProjectLink title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
+            dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(post.description),
+            }}
+          />
+
+          {post.externalLink?.linkTitle && (
+            <ProjectLink
+              title={post.externalLink.linkTitle}
+              href={post.externalLink.linkUrl}
+            >
               {post.externalLink.linkTitle}
             </ProjectLink>
-          }
+          )}
           <ProjectImageContainer>
             {post.work.map(work => {
               return <ProjectImage key={work.id} info={work} />
             })}
           </ProjectImageContainer>
-          {post.externalLink?.linkTitle && 
-            <ProjectLink title={post.externalLink.linkTitle} href={post.externalLink.linkUrl}>
+          {post.externalLink?.linkTitle && (
+            <ProjectLink
+              title={post.externalLink.linkTitle}
+              href={post.externalLink.linkUrl}
+            >
               {post.externalLink.linkTitle}
             </ProjectLink>
-          }
+          )}
           <ProjectCopyright className="copyright">
             Copyright {post.client.name}. I merely was a part of it's creation.
           </ProjectCopyright>
@@ -59,8 +65,8 @@ export default function ProjectDetail({ data }) {
   )
 }
 export const query = graphql`
-  query ($slug: String) {
-    contentfulProjectDetail(slug: {eq: $slug}) {
+  query($slug: String) {
+    contentfulProjectDetail(slug: { eq: $slug }) {
       title
       description {
         content {
@@ -134,7 +140,4 @@ export const query = graphql`
       }
     }
   }
-
-
-
 `
