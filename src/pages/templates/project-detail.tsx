@@ -1,3 +1,4 @@
+import Header from "../../components/Header/Header"
 import Layout from "../../components/layout"
 import ProjectContentContainer from "../../components/ProjectDetail/ProjectContentContainer"
 import ProjectCopyright from "../../components/ProjectDetail/ProjectCopyright"
@@ -23,7 +24,7 @@ export default function ProjectDetail({ data }) {
         image={post.meta.ogimage.fixed.srcWebp}
       />
       <ProjectPage>
-        {console.log({ post })}
+        <Header />
         <ProjectTitle backgroundImage={post.headerBackgroundImage.file.url}>
           <div>{`${post.client.name} - ${post.title}`}</div>
           <ProjectTags tags={post.tags} />

@@ -1,7 +1,6 @@
 import styled from "styled-components"
 const PreviewFrontFaceContainer = styled.div`
   position: absolute;
-  background: red;
   transform: translateZ(50vw);
   width: 100vw;
   height: 100vw;

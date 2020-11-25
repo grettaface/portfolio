@@ -9,7 +9,6 @@ const PreviewImage = ({ slug = "", previewImage }) => {
     <Link to={slug}>
       <PreviewImageContainer>
         <PreviewFrontFace img={previewImage} />
-        <PreviewSideFace />
       </PreviewImageContainer>
     </Link>
   )

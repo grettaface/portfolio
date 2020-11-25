@@ -1,6 +1,7 @@
 import "../components/layout.css"
 
 import Grid from "../components/Grid/Grid"
+import Header from "../components/Header/Header"
 import PreviewImage from "../components/PreviewImage/PreviewImage"
 import React from "react"
 import SEO from "../components/seo"
@@ -21,6 +22,7 @@ const IndexPage = ({ data }) => {
         description={description}
         image={image.fixed.srcWebp}
       />
+      <Header/>
       <Grid>
         {data.allContentfulProject.nodes.map(p => {
           return (

@@ -1,5 +1,4 @@
-import PreviewFrontFace from "./PreviewFrontFaceContainer"
-import PreviewSideFace from "./PreviewSideFace"
+import PreviewImageContent from "./PreviewImageContent"
 import styled from "styled-components"
 
 const PreviewImageContainer = styled.div`
@@ -8,22 +7,27 @@ const PreviewImageContainer = styled.div`
   transform: rotateY(0);
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+  overflow: hidden;
+
+  img {
+    transition: transform 30s ease-out;
+  }
 
   &:hover {
-    transform: rotateY(-90deg);
+    transform: scale(1.05);
     z-index: 1;
 
-    ${PreviewSideFace} {
-      &::after {
-        opacity: 0;
-      }
+    img {
+      transform: scale(1.25);
     }
 
-    ${PreviewFrontFace} {
-      &::after {
-        opacity: 1;
-      }
+    ${PreviewImageContent} {
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 0, 0, 0.2),
+        rgba(8, 126, 180, 0.8)
+      );
     }
   }
 
