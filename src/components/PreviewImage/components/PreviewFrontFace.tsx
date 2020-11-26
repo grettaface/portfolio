@@ -1,13 +1,19 @@
 import PreviewFrontFaceContainer from "./PreviewFrontFaceContainer"
 import PreviewImageContent from "./PreviewImageContent"
+import ProjectPreviewtitle from "./ProjectPreviewTitle"
+import ProjectTags from "../../ProjectDetail/ProjectTags"
+import ProjectTitle from "../../ProjectDetail/ProjectTitle"
 import React from "react"
 
-const PreviewFrontFace = ({ img }) => {
-  console.log({ img })
+const PreviewFrontFace = ({ project }) => {
+  console.log({ project })
   return (
     <PreviewFrontFaceContainer>
-      <PreviewImageContent />
-      <img src={img.fluid.srcWebp} />
+      <PreviewImageContent>
+        <ProjectPreviewtitle>{`${project.client} - ${project.title}`}</ProjectPreviewtitle>
+        <ProjectTags tags={project.tags} />
+      </PreviewImageContent>
+      <img src={project.previewImage.fluid.srcWebp} />
     </PreviewFrontFaceContainer>
   )
 }

@@ -13,7 +13,7 @@ module.exports = {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: [`Lato:100,400`,`Roboto`]
+          families: [`Lato:100,300,400`,`Roboto`]
         }
       }
     },

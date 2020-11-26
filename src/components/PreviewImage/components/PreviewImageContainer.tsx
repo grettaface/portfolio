@@ -7,8 +7,9 @@ const PreviewImageContainer = styled.div`
   transform: rotateY(0);
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
+  cursor: pointer;
 
   img {
     transition: transform 30s ease-out;

@@ -29,7 +29,7 @@ const IndexPage = ({ data }) => {
             <PreviewImage
               key={p.id}
               slug={p.link?.slug}
-              previewImage={p.previewImage}
+              project={p}
             />
           )
         })}

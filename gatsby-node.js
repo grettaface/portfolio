@@ -9,6 +9,7 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
   data.allContentfulProjectDetail.nodes.forEach(edge => {
+    console.log({edge})
     const slug = edge.slug
     actions.createPage({
       path: slug,
