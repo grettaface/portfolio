@@ -13,7 +13,7 @@ const PreviewFrontFace = ({ project }) => {
         <ProjectPreviewtitle>{`${project.client} - ${project.title}`}</ProjectPreviewtitle>
         <ProjectTags tags={project.tags} />
       </PreviewImageContent>
-      <img src={project.previewImage.fluid.srcWebp} />
+      <img loading="lazy" src={project.previewImage.fluid.srcWebp} />
     </PreviewFrontFaceContainer>
   )
 }
