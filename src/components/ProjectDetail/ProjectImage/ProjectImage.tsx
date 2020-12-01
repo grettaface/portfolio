@@ -7,6 +7,7 @@ const ProjectImage = info => {
   return (
     <ProjectImageContainer>
       <img
+        loading="lazy"
         src={info.info.image.file.url}
         alt={info.info.image.title}
         title={info.info.image.title}
